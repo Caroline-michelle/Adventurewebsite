@@ -12,6 +12,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Segoe UI", sans-serif;
   line-height: 1.6;
@@ -30,7 +34,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: rgba(112, 129, 92, 0.8);
+  background-color: rgba(112, 129, 92, 0.85);
   backdrop-filter: blur(5px);
 }
 
@@ -51,10 +55,16 @@ body {
   position: relative;
   z-index: 1010;
   text-shadow: none;
+  transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  opacity: 0.8;
 }
 
 .about-page .logo-nav {
-  background-color: rgba(112, 129, 92, 0.8);
+  background-color: rgba(112, 129, 92, 0.85);
 }
 
 /* Hero Header */
@@ -66,6 +76,13 @@ body {
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
 
+.hero-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+}
+
 .hero-text {
   position: absolute;
   top: 50%;
@@ -73,6 +90,7 @@ body {
   transform: translate(-50%, -50%);
   text-align: center;
   max-width: 90%;
+  z-index: 1;
 }
 
 .hero-text h1 {
@@ -87,23 +105,27 @@ body {
 }
 
 /* Featured Section */
-.featured-hikes {
-  padding: 4rem 2rem;
+.featured-hikes,
+.hikes-page {
+  padding: 5rem 2rem;
   background-color: var(--white);
   color: var(--navy);
   text-align: center;
 }
 
-.featured-hikes h1 {
+.featured-hikes h1,
+.hikes-page h1 {
   font-size: 2.5rem;
   color: var(--navy);
   margin-bottom: 1rem;
 }
+
 .featured-hikes h2 {
   font-size: 2rem;
   color: var(--navy);
   margin-bottom: 3rem;
 }
+
 .intro-text {
   font-size: 1.15rem;
   max-width: 700px;
@@ -114,7 +136,7 @@ body {
 .hike-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2.5rem;
+  gap: 2rem;
   padding: 0 1rem;
   max-width: 1000px;
   margin: 0 auto;
@@ -123,18 +145,18 @@ body {
 .hike-card {
   background-color: var(--olive);
   color: var(--white);
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 1rem;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
 .hike-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
   cursor: pointer;
 }
 
@@ -142,10 +164,11 @@ body {
   width: 100%;
   height: 160px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
   margin-bottom: 1rem;
   flex-shrink: 0;
 }
+
 .hike-card h3 {
   font-size: 1.3rem;
   color: var(--secondary);
@@ -194,17 +217,17 @@ footer {
 .contact-section {
   display: flex;
   justify-content: center;
-  padding: 3rem 1rem;
+  padding: 4rem 1rem;
 }
 
 .form-container {
   background-color: var(--olive);
   color: var(--white);
   padding: 2rem;
-  border-radius: 1rem;
+  border-radius: 1.2rem;
   max-width: 600px;
   width: 100%;
-  box-shadow: 0 4px 12px rgba(59, 78, 87, 0.15);
+  box-shadow: 0 6px 16px rgba(59, 78, 87, 0.15);
 }
 
 .form-container h2 {
@@ -228,7 +251,7 @@ select {
   border: 1px solid var(--navy);
   width: 100%;
   padding: 0.75rem;
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
   font-size: 1rem;
 }
 
@@ -249,10 +272,12 @@ button {
   color: var(--white);
   padding: 0.75rem;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
   font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
+
 .button-wrapper {
   display: flex;
   justify-content: center;
@@ -260,6 +285,7 @@ button {
 
 button:hover {
   background-color: var(--navy);
+  transform: translateY(-2px);
 }
 
 /* About page  */
@@ -340,6 +366,10 @@ button:hover {
 
   .about-text {
     padding: 2rem;
+  }
+
+  button {
+    width: 100%;
   }
 }
 
